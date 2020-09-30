@@ -37,7 +37,7 @@ matematică și C/C++. Întrebările notate cu (*) sînt considerate mai dificil
 2. Calculați inversul lui 3 mod 7; inversul lui 5 mod 9; inversul lui 4 mod 200;
    inversul lui -3 mod 11; inversul lui -5 mod 9.
 
-* COMMENT C/C++
+* C/C++
 1. Care este diferența dintre o funcție declarată =int func(int a, int b)= și o
    funcție declarată =float func(int a, int b)=?
 2. Care este diferența dintre o funcție declarată =int func(int a)= și o funcție
