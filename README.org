@@ -14,6 +14,10 @@ aferente primului laborator. Aceste materiale vor conține noțiuni teoretice,
 exerciții rezolvate, exerciții propuse, teme rezolvate și orice alte
 materiale se vor considera utile.
 
+De exemplu, înaintea începerii propriu-zise a materiei, am conceput
+un "laborator" preliminar =lab0=, pentru a vă familiariza cu uneltele și 
+modul de lucru.
+
 Studenții participanți vor fi adăugați la repository cu drepturi depline,
 vor putea citi, descărca materiale și încărca teme sau alte materiale ori
 propuneri pentru buna desfășurare a seminarului.
