@@ -43,26 +43,25 @@ matematică și C/C++. Întrebările notate cu (*) sînt considerate mai dificil
    declarată `void func(int a)`?
 3. Ce calculează și ce afișează următoarea bucată de cod?
    ```cpp
-int v[100], int m;
+    int v[100], int m;
+    m = -9999;
+    for (int i = 0; i < n; i++)
+      if (v[i] > m)
+    	m = v[i];
 	
-m = -9999;
-for (int i = 0; i < n; i++)
-if (v[i] > m)
-m = v[i];
-	
-std::cout<<m<<endl;
+    std::cout<<m<<endl;
 	```
 4. Ce calculează și ce afișează următoarea bucată de cod?
    ```cpp 
-int d = 0, i = 0, v[100];
+    int d = 0, i = 0, v[100];
    
-while (i < n) {
-  if (v[i] % 3 == 0)
-	d += 1;
-  i += 1;
- }
+    while (i < n) {
+      if (v[i] % 3 == 0)
+    	d += 1;
+      i += 1;
+     }
 
-std::cout<<d;
+    std::cout<<d;
 	```
 5. Ce calculează și ce afișează următoarea bucată de cod?
    ```cpp
