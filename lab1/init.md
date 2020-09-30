@@ -54,16 +54,15 @@ matematică și C/C++. Întrebările notate cu (*) sînt considerate mai dificil
   ```
 4. Ce calculează și ce afișează următoarea bucată de cod?
    ```cpp
-	 int d = 0, i = 0, v[100];
+	int d = 0, i = 0, v[100];
 
+	while (i < n) {
+	  if (v[i] % 3 == 0)
+		d += 1;
+	  i += 1;
+	}
 
-	 while (i < n) {
-	   if (v[i] % 3 == 0)
-		 d += 1;
-	   i += 1;
-	  }
-
-	 std::cout<<d;
+	std::cout<<d;
    ```
 5. Ce calculează și ce afișează următoarea bucată de cod?
    ```cpp
