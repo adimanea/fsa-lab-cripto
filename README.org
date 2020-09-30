@@ -18,6 +18,10 @@ De exemplu, înaintea începerii propriu-zise a materiei, am conceput
 un "laborator" preliminar =lab0=, pentru a vă familiariza cu uneltele și 
 modul de lucru.
 
+Pentru început:
+- [[file:lab0/README.org][lab0]]: preliminarii și unelte recomandate;
+- [[file:lab1/init.org][lab1]]: discuție inițială de recapitulare și familiarizare.
+
 Studenții participanți vor fi adăugați la repository cu drepturi depline,
 vor putea citi, descărca materiale și încărca teme sau alte materiale ori
 propuneri pentru buna desfășurare a seminarului.
