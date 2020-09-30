@@ -32,15 +32,11 @@ se poate face:
   + avantaj: nu trebuie instalat nimic;
   + dezavantaje: nu prea permite modificare sau încărcare de fișiere;
 - folosind aplicația [[https://desktop.github.com/][GitHub Desktop]], disponibilă pentru Windows și macOS:
-  + avantaje: este "self-contained", nu mai trebuie instalat nimic în afară de ea
-	și are o interfață grafică, deci nu trebuie să dați comenzi de terminal;
-  + dezavantaje: durează pînă vă familiarizați cu interfața, iar editarea fișierelor
-	trebuie făcută separat;
+  + avantaje: este "self-contained", nu mai trebuie instalat nimic în afară de ea și are o interfață grafică, deci nu trebuie să dați comenzi de terminal;
+  + dezavantaje: durează pînă vă familiarizați cu interfața, iar editarea fișierelor trebuie făcută separat;
 - folosind terminalul și, eventual, [[https://cli.github.com/][github cli]]:
-  + avantaj: rulînd în terminal, mai ales dacă folosiți și un editor precum
-	Vim sau Emacs, aveți toate uneltele la îndemînă pentru tot procesul;
-  + dezavantaj: flexibilitatea și puterea de lucru vin cu un cost destul de mare
-	de învățare; va fi greu la început.
+  + avantaj: rulînd în terminal, mai ales dacă folosiți și un editor precum Vim sau Emacs, aveți toate uneltele la îndemînă pentru tot procesul;
+  + dezavantaj: flexibilitatea și puterea de lucru vin cu un cost destul de mare de învățare; va fi greu la început.
 
 * Foarte scurtă introducere în GitHub
 GitHub este un serviciu construit pe baza programului de Linux =git=,
