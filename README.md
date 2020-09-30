@@ -18,8 +18,8 @@ un "laborator" preliminar `lab0`, pentru a vă familiariza cu uneltele și
 modul de lucru.
 
 Pentru început:
-- [lab0](file:lab0/README.org): preliminarii și unelte recomandate;
-- [lab1](file:lab1/init.md): discuție inițială de recapitulare și familiarizare.
+- [lab0](file:///lab0/README.org): preliminarii și unelte recomandate;
+- [lab1](file:///lab1/init.md): discuție inițială de recapitulare și familiarizare.
 
 Studenții participanți vor fi adăugați la repository cu drepturi depline,
 vor putea citi, descărca materiale și încărca teme sau alte materiale ori
