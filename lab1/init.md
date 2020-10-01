@@ -11,10 +11,10 @@ matematică și C/C++. Întrebările notate cu (*) sînt considerate mai dificil
    criptează datele. Ce înseamnă aceasta, în cuvintele voastre?
 4. Dați exemplu de un algoritm criptografic, la ce este folosit (dacă mai
    este în uz) și cum funcționează el, în mare.
-5. (*) Ce este un algoritm criptografic /simetric/?
-6. (*) Ce este /hashing/-ul?
-7. (*) Ce este un /nonce/?
-8. Ce este procesul de /autentificare/? Dar de /autorizare/? Dați exemple
+5. (*) Ce este un algoritm criptografic *simetric*?
+6. (*) Ce este *hashing*-ul?
+7. (*) Ce este un *nonce*?
+8. Ce este procesul de *autentificare*? Dar de *autorizare*? Dați exemple
    în care cele două procese sînt diferite.
 9. Putem spune că utilizarea unui lacăt cu cifru la o valiză
    este o măsură criptografică? Argumentați.
