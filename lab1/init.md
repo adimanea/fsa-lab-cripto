@@ -49,7 +49,7 @@ matematică și C/C++. Întrebările notate cu (*) sînt considerate mai dificil
       if (v[i] > m)
     	m = v[i];
 	
-    std::cout<<m<<endl;
+    std::cout<<m<<std::endl;
 	```
 4. Ce calculează și ce afișează următoarea bucată de cod?
    ```cpp 
@@ -78,8 +78,8 @@ matematică și C/C++. Întrebările notate cu (*) sînt considerate mai dificil
 	   int m;
 
 	   m = (24 * 40)/guess(24, 40);
-	   std::cout<<guess(24, 40)<<endl;
-	   std::cout<<m<<endl;
+	   std::cout<<guess(24, 40)<<std::endl;
+	   std::cout<<m<<std::endl;
 
 	   return 0;
 	 }
@@ -105,3 +105,11 @@ matematică și C/C++. Întrebările notate cu (*) sînt considerate mai dificil
 	   return 42;
 	 }
    ```
+
+7. Scrieți un program care numără multiplii de 3 sau de 5 mai mici decît 1000.
+
+8. Scrieți un program care citește `n` de la tastatură și afișează al `n`-lea termen din șirul lui Fibonacci (`n < 10,000`).
+
+9. Scrieți un program care citește `n` de la tastatură și afișează `n!` și `n` la puterea `n` (`n < 1000`).
+
+10. Scrieți un program care citește `n` de la tastatură și afișează al `n`-lea număr prim (`n < 10,000`).
