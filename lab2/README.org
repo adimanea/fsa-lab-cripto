@@ -18,6 +18,20 @@ numere cu anumite proprietăți speciale, într-un anume sens. În acest
 laborator, vom inventaria cîteva tipuri de astfel de numere și vom scrie
 programe simple care să le găsească și să le prelucreze.
 
+* Fracții ireductibile
+Dacă ~a/b~ este o fracție de numere întregi, ea poate fi făcută ireductibilă
+simplificînd cu ~cmmdc(a,b)~.
+
+*Exercițiu:* Citiți de la tastatură ~a~ și ~b~, afișați ~cmmdc(a,b)~ și fracția ireductibilă rezultată.
+
+Exemplu:
+#+begin_example
+a = 1524096
+b = 9072000
+cmmdc(a,b) = 72576
+ireductibil: 21/125
+#+end_example
+
 * Conjectura lui Collatz
 Acest rezultat, nedemonstrat încă, afirmă că, dacă se pornește cu un întreg
 =n=, se poate ajunge mereu la =1=, aplicînd numai pașii de mai jos:
@@ -57,8 +71,7 @@ Exemplu: pentru 3524 obținem:
 
 1. Scrieți un program care să aplice pașii de mai sus, arătînd de fiecare dată pașii intermediari.
 
-2. Procedura funcționează și pentru numere de 3 cifre, finalizîndu-se cu 495, în maximum 6 pași.
-Scrieți un program și pentru acest caz.
+2. Procedura funcționează și pentru numere de 3 cifre, finalizîndu-se cu 495, în maximum 6 pași. Scrieți un program și pentru acest caz.
 
 * Indicatorul lui Euler
 Pentru orice număr natural ~n~, se definește ~phi(n)~ ca fiind numărul de numere naturale,
@@ -98,16 +111,4 @@ numere naturale. Astfel, al ~n~-lea număr triunghiular este 1 + 2 + 3 + ... + n
 
 *Exercițiu:* Care este cel mai mic număr triunghiular care are 100 divizori?
 
-* Fracții ireductibile
-Dacă ~a/b~ este o fracție de numere întregi, ea poate fi făcută ireductibilă
-simplificînd cu ~cmmdc(a,b)~.
 
-*Exercițiu:* Citiți de la tastatură ~a~ și ~b~, afișați ~cmmdc(a,b)~ și fracția ireductibilă rezultată.
-
-Exemplu:
-#+begin_example
-a = 1524096
-b = 9072000
-cmmdc(a,b) = 72576
-ireductibil: 125/21
-#+end_example
