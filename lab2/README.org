@@ -2,7 +2,7 @@
 #+AUTHOR: Adrian Manea
 
 * Recapitulare: Inverse modulare
-*Exercițiu:* 1. Scrieți un program care să rezolve ecuația ~a*x + b = c~
+*Exercițiu:* Scrieți un program care să rezolve ecuația ~a*x + b = c~
 modulo ~n~, unde ~a, b, c, n~ sînt citite de la tastatură, iar ~x~ este
 soluția care trebuie afișată.
 
@@ -28,12 +28,9 @@ Exemplu: ~10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1~.
 
 *Exerciții*
 
-1. Scrieți un program care să verifice această conjectură pentru un număr citit
-de la tastatură, afișînd toți pașii intermediari, precum și numărul total
-al pașilor.
+1. Scrieți un program care să verifice această conjectură pentru un număr citit de la tastatură, afișînd toți pașii intermediari, precum și numărul total al pașilor.
 
-2. Scrieți un program care găsește numărul mai mic decît 10,000,000 care necesită
-cei mai mulți pași pentru a ajunge la 1.
+2. Scrieți un program care găsește numărul mai mic decît 10,000,000 care necesită cei mai mulți pași pentru a ajunge la 1.
 
 * Constanta lui Kaprekar
 Folosim următoarele reguli:
