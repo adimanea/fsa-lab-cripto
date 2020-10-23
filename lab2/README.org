@@ -32,6 +32,26 @@ cmmdc(a,b) = 72576
 ireductibil: 21/125
 #+end_example
 
+* cmmdc pentru ~n~ numere
+Se poate defini cmmdc pentru ~n~ numere inductiv, astfel. Presupunem că avem
+~n~ numere naturale, ~a[1], a[2], a[3], ..., a[n]~. Atunci
+~cmmdc(a[1], a[2], ..., a[n]) = cmmdc(cmmdc(a[1], a[2], ..., a[n-1]), a[n])~.
+
+*Exercițiu:* Folosind acest rezultat și o funcție care calculează ~cmmdc~ pentru 2 numere naturale,
+citiți de la tastatură ~n~, apoi ~n~ numere naturale și afișați-le ~cmmdc~.
+
+* Adunarea fracțiilor
+*Exercițiu:* Citiți de la tastatură un număr natural ~n~, care este numărul de fracții, 
+apoi ~2*n~ numere naturale, care reprezintă perechi (numărător, numitor) pentru cele ~n~ fracții.
+
+Aduceți-le la același numitor și calculați suma fracțiilor.
+
+*Atenție:* 
+
+1. Avem nevoie de condiții de validare, nu orice fracție poate fi acceptată!
+
+2. Putem considera mai întîi cazul cînd lucrăm doar cu numere pozitive. Modificați programul încît să meargă și pentru numere negative.
+
 * Conjectura lui Collatz
 Acest rezultat, nedemonstrat încă, afirmă că, dacă se pornește cu un întreg
 =n=, se poate ajunge mereu la =1=, aplicînd numai pașii de mai jos:
