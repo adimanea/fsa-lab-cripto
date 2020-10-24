@@ -2,7 +2,7 @@
 #+AUTHOR: Adrian Manea
 
 * Recapitulare: Inverse modulare
-*Exercițiu:* Scrieți un program care să rezolve ecuația ~a*x + b = c~
+*Exercițiu L2.1* Scrieți un program care să rezolve ecuația ~a*x + b = c~
 modulo ~n~, unde ~a, b, c, n~ sînt citite de la tastatură, iar ~x~ este
 soluția care trebuie afișată.
 
@@ -22,7 +22,7 @@ programe simple care să le găsească și să le prelucreze.
 Dacă ~a/b~ este o fracție de numere întregi, ea poate fi făcută ireductibilă
 simplificînd cu ~cmmdc(a,b)~.
 
-*Exercițiu:* Citiți de la tastatură ~a~ și ~b~, afișați ~cmmdc(a,b)~ și fracția ireductibilă rezultată.
+*Exercițiu L2.2* Citiți de la tastatură ~a~ și ~b~, afișați ~cmmdc(a,b)~ și fracția ireductibilă rezultată.
 
 Exemplu:
 #+begin_example
@@ -37,11 +37,11 @@ Se poate defini cmmdc pentru ~n~ numere inductiv, astfel. Presupunem că avem
 ~n~ numere naturale, ~a[1], a[2], a[3], ..., a[n]~. Atunci
 ~cmmdc(a[1], a[2], ..., a[n]) = cmmdc(cmmdc(a[1], a[2], ..., a[n-1]), a[n])~.
 
-*Exercițiu:* Folosind acest rezultat și o funcție care calculează ~cmmdc~ pentru 2 numere naturale,
+*Exercițiu L2.3* Folosind acest rezultat și o funcție care calculează ~cmmdc~ pentru 2 numere naturale,
 citiți de la tastatură ~n~, apoi ~n~ numere naturale și afișați-le ~cmmdc~.
 
 * Adunarea fracțiilor
-*Exercițiu:* Citiți de la tastatură un număr natural ~n~, care este numărul de fracții, 
+*Exercițiu L2.4* Citiți de la tastatură un număr natural ~n~, care este numărul de fracții, 
 apoi ~2*n~ numere naturale, care reprezintă perechi (numărător, numitor) pentru cele ~n~ fracții.
 
 Aduceți-le la același numitor și calculați suma fracțiilor.
@@ -51,6 +51,10 @@ Aduceți-le la același numitor și calculați suma fracțiilor.
 1. Avem nevoie de condiții de validare, nu orice fracție poate fi acceptată!
 
 2. Putem considera mai întîi cazul cînd lucrăm doar cu numere pozitive. Modificați programul încît să meargă și pentru numere negative.
+
+* Factorizare
+*Exercițiu L2.5* Se citește de la tastatură un număr natural ~n~, de maximum 10 cifre. Să se afișeze descompunerea lui în factori primi.
+Exemplu: ~n = 1000, output = 2^3 * 5^3~.
 
 * Conjectura lui Collatz
 Acest rezultat, nedemonstrat încă, afirmă că, dacă se pornește cu un întreg
@@ -62,9 +66,9 @@ Exemplu: ~10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1~.
 
 *Exerciții*
 
-1. Scrieți un program care să verifice această conjectură pentru un număr citit de la tastatură, afișînd toți pașii intermediari, precum și numărul total al pașilor.
+L2.6. Scrieți un program care să verifice această conjectură pentru un număr citit de la tastatură, afișînd toți pașii intermediari, precum și numărul total al pașilor.
 
-2. Scrieți un program care găsește numărul mai mic decît 10,000,000 care necesită cei mai mulți pași pentru a ajunge la 1.
+L2.7. Scrieți un program care găsește numărul mai mic decît 10,000,000 care necesită cei mai mulți pași pentru a ajunge la 1.
 
 * Constanta lui Kaprekar
 Folosim următoarele reguli:
@@ -89,9 +93,9 @@ Exemplu: pentru 3524 obținem:
 
 *Exerciții*
 
-1. Scrieți un program care să aplice pașii de mai sus, arătînd de fiecare dată pașii intermediari.
+L2.8 Scrieți un program care să aplice pașii de mai sus, arătînd de fiecare dată pașii intermediari.
 
-2. Procedura funcționează și pentru numere de 3 cifre, finalizîndu-se cu 495, în maximum 6 pași. Scrieți un program și pentru acest caz.
+L2.9 Procedura funcționează și pentru numere de 3 cifre, finalizîndu-se cu 495, în maximum 6 pași. Scrieți un program și pentru acest caz.
 
 * Indicatorul lui Euler
 Pentru orice număr natural ~n~, se definește ~phi(n)~ ca fiind numărul de numere naturale,
@@ -100,7 +104,7 @@ decît ~n~ au cmmdc 1 cu ~n~.
 
 Exemplu: ~phi(10) = 4~, deoarece 10 este coprim cu 1, 3, 7, 9.
 
-*Exercițiu:* Scrieți un program care calculează ~phi(n)~, pentru ~n~ citit de la tastatură.
+*Exercițiu L2.10.* Scrieți un program care calculează ~phi(n)~, pentru ~n~ citit de la tastatură.
 Afișați și numerele coprime cu ~n~.
 
 * Mica teoremă lui Fermat și formula lui Euler
@@ -108,7 +112,7 @@ Afișați și numerele coprime cu ~n~.
 
 *Euler:* Pentru orice număr natural ~a~, are loc ~a^phi(n) = 1 (mod n)~.
 
-*Exercițiu:* Scrieți cîte un program care să verifice cele două teoreme, pentru
+*Exercițiu L2.11.* Scrieți cîte un program care să verifice cele două teoreme, pentru
 ~a, n, p~ citite de la tastatură.
 
 Exemplu: ~a = 3, p = 5, n = 10~. Output:
@@ -120,7 +124,7 @@ phi(10) = 4
 #+end_example
 
 * Număr divizibil cu toate numerele naturale
-*Exercițiu:*
+*Exercițiu L2.12.*
 
 Cel mai mic număr care se divide cu toate numerele de la 1 la 10 este 2520.
 Aflați cel mai mic număr care se divide cu toate numerele de la 1 la 20.
@@ -129,6 +133,6 @@ Aflați cel mai mic număr care se divide cu toate numerele de la 1 la 20.
 Un număr se numește /triunghiular/ dacă poate fi obținut ca suma primelor
 numere naturale. Astfel, al ~n~-lea număr triunghiular este 1 + 2 + 3 + ... + n.
 
-*Exercițiu:* Care este cel mai mic număr triunghiular care are 100 divizori?
+*Exercițiu L2.13.* Care este cel mai mic număr triunghiular care are 100 divizori?
 
 
