@@ -1,4 +1,4 @@
-#+TITLE: Laborator 3: Algoritmi de factorizare și teste de primalitate
+#+TITLE: Laborator 3: Teste de primalitate
 
 * Testarea directă
 Cel mai simplu mod prin care putem testa dacă un număr este prim este
