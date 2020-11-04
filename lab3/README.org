@@ -1,0 +1,177 @@
+#+TITLE: Laborator 3: Algoritmi de factorizare și teste de primalitate
+
+* Testarea directă
+Cel mai simplu mod prin care putem testa dacă un număr este prim este
+să verificăm dacă el are vreun divizor propriu (diferit de 1 și numărul
+însuși). Nu este însă necesar să testăm toate numerele. Se poate demonstra
+că, dacă numărul nu se divide cu niciun număr de la 1 pînă la /radicalul său/,
+atunci este prim. Așadar, verificarea directă înseamnă:
+
+#+begin_src c++
+  #include<iostream>
+  #include<math.h>
+
+  int isPrime(unsigned long long int n) {
+	for (unsigned long long int i = 2; i < (unsigned long long int) sqrt(n); i++)
+	  if (n % i == 0)
+		return 0;
+
+	return 1;
+  }
+
+  int main() {
+	unsigned long long int number;
+
+	if (isPrime(number)) std::cout<<"Numărul este prim.\n";
+	else std::cout<<"Numărul nu este prim.\n";
+
+	return 0;
+  }
+#+end_src
+
+Evident că o astfel de verificare durează prea mult pentru numere mari. Astfel că
+avem nevoie de teste de primalitate mai eficiente.
+
+* Ciurul lui Eratostene
+Acest algoritm poate fi folosit pentru a afișa toate numerele prime mai mici sau
+egale cu un prag dat. El are și avantajul afișării într-un format vizual clar.
+
+Procedura este următoarea:
+1. Se citește pragul pînă la care vrem să determinăm numerele prime (pentru optimizare
+   vizuală, vom presupune că =prag= este un pătrat perfect, e.g. 100);
+2. Se inițializează o matrice pătratică de dimensiunea =sqrt(prag) x sqrt(prag)=,
+   care va conține toate numerele de la =1= la =prag=;
+3. Se parcurge matricea, iar la fiecare pas =i= se șterg din matrice toți multiplii lui =i=.
+   Exemplu: la al doilea pas se șterg toate numerele pare. La al treilea pas, se șterg
+   multiplii de 3 rămași etc.
+4. La final, matricea va conține doar numere prime.
+
+Evident, algoritmul poate fi optimizat în mai multe moduri și se poate implementa
+mai simplu cu vectori, eliminînd astfel necesitatea de a lucra cu matrice (pătratice).
+
+*Exercițiu L3.1*: Scrieți un program care să citească de la tastatură un număr natural
+și să afișeze toate numerele prime mai mici sau egale cu numărul respectiv, folosind
+vectori și ciurul lui Eratostene.
+
+*Exercițiu L3.2*: Scrieți un program care să prezinte ciurul lui Eratostene pentru un
+=prag= citit de la tastatură și presupus pătrat perfect, cu matrice.
+
+* Testul Fermat
+Folosind mica teoremă a lui Fermat din [[https://github.com/adimanea/fsa-lab-cripto/blob/master/lab2/README.org][laboratorul anterior]], avem că ~a^{p-1} = 1 mod p~,
+pentru orice =a=, dacă =p= este prim. Astfel, dat un număr natural =n=, putem lucra în =Zn= 
+(inelul claselor de resturi modulo =n=) și să verificăm toate elementele =a= din =Zn=.
+Dacă vreunul dintre acestea nu returnează =1 mod n= cînd este ridicat la puterea =n-1=,
+atunci =n= nu este prim.
+
+*Exercițiu L3.3:* Implementați testul Fermat: se citește de la tastatură un număr =n= și,
+dacă numărul nu este prim, să se afișeze primul =a= din =Zn= astfel încît ~a^{n-1} != 1 mod n~,
+iar dacă este prim, să afișeze ="Număr prim, conform testului Fermat."=.
+
+* Teste probabilistice
+Toate exercițiile de mai sus pot fi re-implementate folosind teste probabilistice.
+De exemplu, pentru testul Fermat, putem să nu verificăm toți =a= din =Zn=, ci să luăm
+cîteva valori alese aleatoriu și să răspundem cu ="probabil prim"=.
+
+*Exercițiu 3.4:* Refaceți testul Fermat în varianta probabilistică, lăsînd utilizatorul
+să aleagă cîte teste aleatorii se vor face.
+
+
+* Testul Miller-Rabin
+Acest test se bazează pe negarea testului Fermat. Mai precis, afirmă că dacă putem găsi
+un număr natural =a= astfel încît ~a^d != 1 mod n~ și totodată ~a^{2^r * d} != -1 mod n~,
+pentru toți ~0 <= r <= s-1~, unde ~s~ este cea mai mare putere a lui =2= care apare în
+descompunerea în factori primi a lui ~n-1~, iar =s= este ~(n-1)/2^s~, atunci =n= nu este prim. 
+Acel =a= care satisface proprietatea de mai sus, pentru =n= compus, se numește /martor/.
+Altfel, dacă pentru un =a= găsim că ar fi martor, iar pentru alt =a= găsim că afirmația
+este falsă, atunci prima valoare se va numi /mincinos/.
+
+Pe scurt, dat un număr natural =n=, avem de parcurs pașii:
+- Calculăm puterea lui =2= din =n-1=. Fie aceasta =s=;
+- Calculăm =d=, care este ~(n-1)/(2^s)~;
+- Pentru toți ~a~ din =Zn=, calculăm ~a^d mod n~;
+- Pentru fiecare valoare a lui ~a~ pentru care ~a^d mod n != 1~, calculăm
+  ~a^{2^r * d} mod n~, pentru toate valorile ~0 <= r <= s-1~;
+- Dacă niciunul dintre calculele de mai sus nu dă ~-1~, atunci ~n~ este prim.
+
+Un exemplu este [[https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Example][aici]].
+
+*Problemă:* Nu se cunoaște nicio metodă care să ne arate cum să găsim un =a= care
+să fie martor sau mincinos. Calculele sînt enorme, mai mari decît în cazul teoremei Fermat.
+De aceea, de cele mai multe ori, testul Miller-Rabin este folosit probabilistic.
+Se generează aleatoriu cîteva valori ale lui ~a~ din ~Zn~ și se caută martori sau
+mincinoși. Atunci, ~n~ va fi doar /probabil prim/.
+
+Empiric, s-a arătat că există cîteva valori particulare pentru =a= ce se pot utiliza.
+Detalii [[https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Testing_against_small_sets_of_bases][aici]].
+
+*Exercițiu L3.5.:* Scrieți un program care să execute testul Miller-Rabin probabilistic.
+Alegeți aleatoriu 3 valori pentru =a= din =Zn=, pentru =n= citit de la tastatură.
+Afișați și martorii și mincinoșii, împreună cu concluzia probabilă.
+
+* Testul Solovay-Strassen
+Pentru acest test, avem nevoie de o noțiune matematică, numită *simbolul Jacobi*.
+Fie =b= un număr natural și =p= un număr prim. Se definește simbolul Jacobi
+=(b/p)= astfel:
+- 0, dacă =p= divide =b=;
+- 1, dacă =b mod p= este pătrat perfect în =Zp=;
+- -1 în rest.
+
+Exemple:
+- ~(10/3) = 1~, pentru că ~10 mod 3 = 1~, care este pătratul lui ~1~ în ~Z3~;
+- ~(21/3) = 0~, pentru că 3 divide 21;
+- ~(14/33) = -1~, pentru că 33 nu divide 14 și 14 nu e pătrat perfect în =Z33=.
+
+Un tabel cu mai multe valori este [[https://en.wikipedia.org/wiki/Jacobi_symbol#Table_of_values][aici]].
+
+Testul Solovay-Strassen se bazează pe o teoremă:
+#+begin_example
+  Dacă =n= e număr prim, atunci pentru orice =b= din =Zn=, are loc
+  ~b^{(n-1)/2} = (b/n) mod n~.
+#+end_example
+
+Cu alte cuvinte, testul Solovay-Strassen înseamnă:
+1. Se citește =n=;
+2. Pentru toți =b= din =Zn=, se calculează simbolurile Jacobi ~(b/n)~
+   și expresia ~b^{(n-1)/2}~;
+3. Dacă cele două sînt egale în =Zn=, atunci =n= e prim.
+
+*Exercițiu L3.6.:* Scrieți un program care să aplice testul Solovay-Strassen
+determinist (cu =n= mai mic decît 10,000).
+
+*Exercițiu L3.7.:* Scrieți un program care să aplice testul Solovay-Strassen
+probabilist, cu 7 valori alese aleatoriu pentru =b=, pentru =n < 2,000,000,000=.
+
+* Preview: Cifrul Cezar
+O variantă modernă a unuia dintre primele sisteme de criptare din istorie,
+aparținînd lui Iulius Cezar, este următoarea:
+
+1. Se citește un mesaj în text clar;
+2. Se asociază fiecărui caracter din mesaj codul său ASCII;
+3. Se aplică o translație cu =n= unități codurilor ASCII, cu =n= citit de la
+   tastatură sau ales aleatoriu;
+4. Se transformă înapoi din coduri ASCII în caractere și se afișează mesajul criptat rezultat.
+
+*Exercițiu L3.8.:* Scrieți un program care să aplice cifrul Cezar pe un cuvînt
+citit de la tastatură, /fără pasul 3/ (echivalent, ~n=0~).
+
+*Exercițiu L3.9.:* Scrieți un program care să aplice cifrul Cezar pe un cuvînt
+citit de la tastatură, cu pasul 3 avînd =n= ales aleatoriu.
+
+*Exercițiu L3.10.:* Scrieți un program care să aplice cifrul Cezar /pe blocuri/:
+1. Citiți mesajul în text clar (un cuvînt sau mai multe);
+2. Citiți lungimea blocului =b=;
+3. Împărțiți mesajul în blocuri de lungime =b=;
+4. Pentru fiecare bloc, aplicați cifrul Cezar de mai sus, schimbînd valoarea lui =n= la fiecare bloc;
+5. Concatenați blocurile rezultate și afișați mesajul criptat.
+
+*Observație:* Opțional, dacă mesajul nu se împarte în mod egal în blocuri, puteți
+folosi 0-padding, adică să concatenați blocul incomplet cu 0.
+
+Exemplu: 
+- mesaj: =LABORATORCRIPTOGRAFIE=;
+- lungimea blocului: ~b = 4~;
+- blocuri: ~LABO RATO RCRI PTOG RAFI E000~.
+
+* Resurse suplimentare
+- Matematică: [[https://www.cis.upenn.edu/~jean/RSA-primality-testing.pdf][Testele Miller-Rabin și Solovay-Strassen probabilistice]] @ Universitatea din Pennsylvania;
+- [[https://en.wikipedia.org/wiki/Primality_test][Pagina Wiki]] pentru "Primality Tests", cu multe legături utile.
