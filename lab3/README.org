@@ -53,8 +53,28 @@ mai simplu cu vectori, eliminînd astfel necesitatea de a lucra cu matrice (păt
 și să afișeze toate numerele prime mai mici sau egale cu numărul respectiv, folosind
 vectori și ciurul lui Eratostene.
 
+*Exemplu:*
+#+begin_example
+  Introduceți marginea superioară pentru numere prime: 100
+  Primele mai mici decît 100 sînt:
+  2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 
+#+end_example
+
 *Exercițiu L3.2*: Scrieți un program care să prezinte ciurul lui Eratostene pentru un
 =prag= citit de la tastatură și presupus pătrat perfect, cu matrice.
+#+begin_example
+  Introduceți marginea superioară pentru numere prime: 100
+  2       3               5               7                               11      
+		  13                              17              19                      
+		  23                                              29              31      
+										  37                              41      
+		  43                              47                                      
+		  53                                              59              61      
+										  67                              71      
+		  73                                              79                      
+		  83                                              89                      
+										  97                              101
+#+end_example
 
 * Testul Fermat
 Folosind mica teoremă a lui Fermat din [[https://github.com/adimanea/fsa-lab-cripto/blob/master/lab2/README.org][laboratorul anterior]], avem că ~a^{p-1} = 1 mod p~,
@@ -67,6 +87,11 @@ atunci =n= nu este prim.
 dacă numărul nu este prim, să se afișeze primul =a= din =Zn= astfel încît ~a^{n-1} != 1 mod n~,
 iar dacă este prim, să afișeze ="Număr prim, conform testului Fermat."=.
 
+#+begin_example
+  Introduceți numărul de testat: 101
+  101 este prim, conform testului Fermat.
+#+end_example
+
 * Teste probabilistice
 Toate exercițiile de mai sus pot fi re-implementate folosind teste probabilistice.
 De exemplu, pentru testul Fermat, putem să nu verificăm toți =a= din =Zn=, ci să luăm
@@ -75,8 +100,41 @@ cîteva valori alese aleatoriu și să răspundem cu ="probabil prim"=.
 *Exercițiu 3.4:* Refaceți testul Fermat în varianta probabilistică, lăsînd utilizatorul
 să aleagă cîte teste aleatorii se vor face.
 
+#+begin_example
+  Introduceți numărul de testat: 27409
+  Cîte teste aleatorii se vor face? 20
+  --------------------------------------------------
+  Testăm 9731. Rezultat pozitiv.
+  Testăm 20195. Rezultat pozitiv.
+  Testăm 13582. Rezultat pozitiv.
+  Testăm 12102. Rezultat pozitiv.
+  Testăm 5150. Rezultat pozitiv.
+  Testăm 1833. Rezultat pozitiv.
+  Testăm 15410. Rezultat pozitiv.
+  Testăm 12782. Rezultat pozitiv.
+  Testăm 14582. Rezultat pozitiv.
+  Testăm 8594. Rezultat pozitiv.
+  Testăm 23535. Rezultat pozitiv.
+  Testăm 21188. Rezultat pozitiv.
+  Testăm 19470. Rezultat pozitiv.
+  Testăm 20443. Rezultat pozitiv.
+  Testăm 21909. Rezultat pozitiv.
+  Testăm 13679. Rezultat pozitiv.
+  Testăm 20477. Rezultat pozitiv.
+  Testăm 25035. Rezultat pozitiv.
+  Testăm 13726. Rezultat pozitiv.
+  Testăm 20741. Rezultat pozitiv.
+  --------------------------------------------------
+  27409 este probabil prim (Fermat).
+#+end_example
+
+O listă de numere prime găsiți, de exemplu, [[http://compoasso.free.fr/primelistweb/page/prime/liste_online_en.php][aici]].
 
 * Testul Miller-Rabin
+*Atenție:* Testul Miller-Rabin este unul foarte dificil de implementat pe cazul
+determinist, deoarece se ajunge foarte ușor la numere mari. Exemple simple
+(și probabiliste) se găsesc [[https://www.geeksforgeeks.org/primality-test-set-3-miller-rabin/][aici]], de exemplu.
+
 Acest test se bazează pe negarea testului Fermat. Mai precis, afirmă că dacă putem găsi
 un număr natural =a= astfel încît ~a^d != 1 mod n~ și totodată ~a^{2^r * d} != -1 mod n~,
 pentru toți ~0 <= r <= s-1~, unde ~s~ este cea mai mare putere a lui =2= care apare în
