@@ -5,6 +5,10 @@ Pentru un bonus, puteți rezolva toate exercițiile de mai jos pe fișiere-text,
 ca date de intrare. Alegeți un paragraf de Wikipedia sau ce mesaj doriți,
 de cîteva propoziții lungime și "criptați-le" cu procedurile din acest laborator.
 
+Atunci cînd este mai dificil de lucrat cu codurile ASCII (pentru a restricționa 
+intervalul alfabetic), puteți lucra cu poziția în alfabet (0..25 sau 1..26),
+fără diacritice românești.
+
 * Cifrul Cezar
 O variantă modernă a unuia dintre primele sisteme de criptare din istorie,
 aparținînd lui Iulius Cezar, este următoarea:
@@ -101,7 +105,33 @@ Astfel, dat mesajul =CRIPTOGRAFIE=, de exemplu, putem proceda:
 4. Se calculează =XOR= între cele două stream-uri;
 5. Rezultatul se trece din binar în zecimal și se recuperează caracterele.
 
+*OBSERVAȚIE:* Pentru a evita lucrul cu caractere neprintabile sau non-alfabetice,
+puteți lucra, în loc de codul ASCII, cu poziția în alfabet.
+
 *EXEMPLU*:
+#+begin_example
+  Mesajul de criptat: criptografie
+  Caracterele de criptat:
+  ['c', 'r', 'i', 'p', 't', 'o', 'g', 'r', 'a', 'f', 'i', 'e']
+  Indicii lor în alfabet:
+  [2, 17, 8, 15, 19, 14, 6, 17, 0, 5, 8, 4]
+  Codurile binare ale indicilor:
+  ['0b10', '0b10001', '0b1000', '0b1111', '0b10011', '0b1110', '0b110', '0b10001', '0b0', '0b101', '0b1000', '0b100']
+  Cheile de criptare (zecimale):
+  [0, 7, 22, 10, 1, 0, 12, 22, 15, 18, 14, 23]
+  Cheile de criptare (binare):
+  ['0b0', '0b111', '0b10110', '0b1010', '0b1', '0b0', '0b1100', '0b10110', '0b1111', '0b10010', '0b1110', '0b10111']
+  Pozițiile criptate:
+  [2, 22, 4, 5, 18, 14, 10, 7, 15, 23, 6, 19]
+  Mesajul criptat:
+  cwefsokhpxgt
+#+end_example
+
+Idei de îmbunătățire:
+- Puteți ține sau nu cont de faptul că în mesajul de intrare aveți sau nu majuscule. Astfel, dacă se introduce mesajul =Laborator de Criptografie=, puteți prelua =laborator de criptografie=;
+- Puteți implementa astfel încît să se ignore spațiile libere (adică, dacă se introduce mesajul =azi avem laborator=, se va prelua =aziavemlaborator=);
+- Puteți adăuga un număr aleatoriu de spații libere în mesajul rezultat, pe poziții aleatorii (adică, dacă rezultă =asjlkjdklsajlkjafvx=, puteți printa =asj lkjdklsa jlkjaf vx=);
+- Puteți transforma caractere aleatorii în majuscule în mesajul criptat (adică, dacă rezultă =askdjhkj=, puteți printa =AskdJHkj=; împreună cu ideea de mai sus, puteți printa =Ask d JHk j=).
 
 *Exercițiu L4.10.:* Implementați criptarea Vernam de mai sus.
 
