@@ -5,9 +5,10 @@ Pentru un bonus, puteți rezolva toate exercițiile de mai jos pe fișiere-text,
 ca date de intrare. Alegeți un paragraf de Wikipedia sau ce mesaj doriți,
 de cîteva propoziții lungime și "criptați-le" cu procedurile din acest laborator.
 
-Atunci cînd este mai dificil de lucrat cu codurile ASCII (pentru a restricționa 
-intervalul alfabetic), puteți lucra cu poziția în alfabet (0..25 sau 1..26),
-fără diacritice românești.
+*Atunci cînd este mai dificil de lucrat cu codurile ASCII (pentru a restricționa*
+*intervalul alfabetic), puteți lucra cu poziția în alfabet (0..25 sau 1..26),*
+*fără diacritice românești.* Alternativ, puteți gîndi o mulțime mai mare, precum
+alfabetul care să conțină și semne ca ~!,.|()<>[]~ etc.
 
 * Cifrul Cezar
 O variantă modernă a unuia dintre primele sisteme de criptare din istorie,
@@ -63,6 +64,7 @@ unde =k= este cheia.
 Criptosistemul afin folosește două chei, =a= și =b=, și transformă =p= în =ap + b (mod 26)=.
 
 *Exercițiu L4.6.:* Implementați criptosistemul afin corespunzător exercițiului 4.
+
 *Exercițiu L4.7.:* Implementați criptosistemul afin pe blocuri, corespunzător exercițiului 5.
 
 * Matrice de criptare
@@ -140,7 +142,7 @@ Puteți considera orice variație a cifrurilor de mai sus în locul generării a
 De exemplu, în practică, se folosesc /chei publice/, adică se cunoaște un mesaj de intrare
 care servește drept cheie, dar nu se știe cum se folosește în algoritm (sau se folosește
 într-o metodă foarte complexă computațional). În plus, pentru criptarea pe blocuri, se folosește
-des o metodă recurentă: cheia pentru blocul =b+1= se obține printr-o anume metodă predeterminată
+des o metodă recurentă: cheia pentru blocul =b + 1= se obține printr-o anume metodă predeterminată
 din cheia pentru blocul =b=.
 
 *Exercițiu suplimentar:* Implementați oricare dintre exercițiile de mai sus folosind o cheie
