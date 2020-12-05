@@ -1,0 +1,201 @@
+#+TITLE: Laborator 5: Diffie-Hellman și RSA
+#+AUTHOR: Adrian Manea
+
+* Problema logaritmului discret
+În inele de clase de resturi =Zn=, problema logaritmului discret este una dificilă,
+potrivită pentru algoritmi de criptare. Algoritmul [[https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange][Diffie-Hellman]] este una dintre
+cele mai cunoscute aplicații pentru această problemă, utilizată astăzi mai mult
+pentru schimbul de chei sau /handshake/ pentru inițierea unei comunicări.
+
+Înainte de a vedea cum funcționează efectiv acest algoritm, să ne familiarizăm
+cu /problema logaritmului discret/. Se dă o bază =a=, ca număr dintr-un inel =Zn=
+și un alt număr =b=, tot din =Zn=. Problema logaritmului discret cere să se calculeze
+=log_a(b)=, adică la ce putere trebuie ridicat =a= în =Zn= ca să obținem =b=.
+
+Nu există o metodă eficientă de a rezolva această problemă, astfel că dacă se lucrează
+cu =a, b= mari și =n= prim mare, computațional, problema este foarte dificilă.
+
+*Exercițiu L5.1.:* Rezolvați problema logaritmului discret: se citesc de la tastatură
+baza =a=, rezultatul =b= și modulul =n=. Afișați =log_a(b)=, dacă se poate calcula
+sau mesaj corespunzător dacă nu se poate calcula.
+
+Puteți să vă verificați folosind acest [[https://www.alpertron.com.ar/DILOG.HTM][calculator]], de exemplu.
+
+#+begin_example
+  Introduceți baza: 15
+  Introduceți rezultatul: 133
+  Introduceți modulul: 199
+  log_15(133) modulo 199 = 47
+  ----------------------------------------------------------------------
+  Introduceți baza: 911
+  Introduceți rezultatul: 12221
+  Introduceți modulul: 331311
+  Problema nu are soluție.
+#+end_example
+
+** Diffie Hellman
+Presupunem că vrem să se facă o comunicare între Alice și Bob. Procedura este următoarea:
+1. Alice își alege o cheie privată, =a=;
+2. Bob își alege o cheie privată =b=;
+3. Se face public un număr prim mare =p= și un întreg aleatoriu =alpha=;
+4. Alice își calculează cheia publică =A=, după formula ~A = alpha^a mod p~;
+5. Bob își calculează cheia publică =B=, după formula ~B = alpha^b mod p~;
+6. Ambii au o cheie comună (/shared key/) =K=, pe care Alice o calculează cu ~K = B^a mod p~, iar Bob o calculează cu ~K = A^b mod p~. Rezultate matematice ne asigură că cele două valori coincid.
+7. Acum, cei doi pot comunica folosind această cheie =K=, în orice algoritm doresc. Exemplul cel mai simplu: cifrare Cezar, adică translație cu =K= elemente a literelor din mesaj.
+
+Detalii [[https://medium.com/loopring-protocol/learning-cryptography-diffie-hellman-key-exchange-discrete-log-problem-cyclic-groups-28703f3d5a48][aici]], de exemplu.
+
+*Exercițiu L5.2.:* Implementați procedura de schimb al cheilor de mai sus, cît mai explicit:
+- cheile private se aleg de la tastatură, ca și =p= și =alpha=;
+- se calculează automat =A=, =B= și =K=.
+
+#+begin_example
+  Cheia privată a lui Alice, a = 4
+  Cheia privată a lui Bob, b = 12
+  Numărul prim public p = 41
+  Am ales alpha = 21
+  Calculez cheia publică A...
+  Cheia publică calculată este A = 9.
+  Calculez cheia publică B...
+  Cheia publică calculată este B = 5
+  Cheia comună calculată de Alice este 9
+  Cheia comună calculată de Bob este 9
+  --------------------------------------------
+  Cheia privată a lui Alice, a = 199
+  Cheia privată a lui Bob, b = 313
+  Numărul prim public p = 177
+  Numărul introdus nu este prim. Reîncercați.
+  Numărul prim public p = 173
+  Am ales alpha = 50
+  Calculez cheia publică A...
+  Cheia publică calculată este A = 118.
+  Calculez cheia publică B...
+  Cheia publică calculată este B = 89
+  Cheia comună calculată de Alice este 96
+  Cheia comună calculată de Bob este 96
+#+end_example
+
+*Exercițiu L5.3.:* Continuați exercițiul de mai sus cu o criptare Cezar folosind translația cu =K=, urmată de o decriptare, folosind translația cu =-K=.
+
+* RSA
+Algoritmul RSA este unul dintre cele mai folosite astăzi și se bazează pe /problema factorizării/.
+Actualmente, nu există un algoritm eficient (polinomial) care să descompună în factori un număr dat.
+Iar dacă factorii sînt numere prime mari, problema este și mai grea.
+
+În aplicațiile uzuale, se folosesc numere de aproximativ 600 cifre.
+
+Procedura este următoarea:
+*Alegerea cheilor de criptare*:
+- fiecare utilizator alege două numere prime mari, =p= și =q=;
+- se calculează /modulul de criptare/, ~n = p * q~ și ~phi(n) = (p - 1)(q - 1)~, unde ~phi~ este /indicatorul lui Euler (vezi Exercițiul L2.10 de la [[https://github.com/adimanea/fsa-lab-cripto/tree/master/lab2][laboratorul 2]]);
+- se alege un /exponent de criptare/ =e=, care poate lua valori de la 3 la ~phi(n) - 1~ și astfel încît să fie prim cu ~phi(n)~, adică ~cmmdc(e, phi(n)) = 1~;
+- se găsește /exponentul de decriptare/ ~d~, astfel încît ~d*e = 1 mod phi(n)~;
+- /cheia publică de criptare/ este perechea ~PuK = (e, n)~;
+- /cheia privată de decriptare/ este perechea ~PrK = (d, n)~.
+
+*Criptarea mesajelor*: Presupunem că Bob vrea să trimită un mesaj lui Alice:
+- Bob primește cheia publică de criptare de la Alice, ~PuK = (e, n)~;
+- Bob apoi reprezintă mesajul =m= pe care vrea să-l trimită astfel încît să devină un număr natural din intervalul ~[0, n - 1]~;
+- Bob calculează ~c = m^e mod n~;
+- Bob trimite ~c~.
+
+Pentru pasul al doilea, pentru simplitate, puteți folosi direct un mesaj numeric.
+Putem presupune că se transmite un astfel de mesaj, urmînd ca decriptarea efectivă
+să fie făcută, de exemplu, pe blocuri. În exemplul de la laborator, deoarece nu lucrăm
+cu numere foarte mari, puteți, așadar, folosi una dintre opțiunile:
+- trimiteți un mesaj numeric =m=, apoi criptarea se face pur și simplu luînd =m % n=;
+- puteți trimite un mesaj alcătuit din maximum 3 litere, pentru care se ia pozițiile din alfabet și se concatenează, obținînd un număr în baza 10, care se ia apoi modulo =n=. De exemplu, mesajul "DA" se va coda în 30.
+
+*Decriptarea mesajelor~:
+- Alice primește mesajul ~c~;
+- Alice calculează ~m' = c^d mod n~, deoarece cunoaște cheia de decriptare, ~PrK = (d, n)~;
+- Se poate demonstra că ~m' = m~, deci Alice a realizat decriptarea.
+
+*Exercițiu L5.4.:* Implementați algoritmul RSA, eventual pe bucăți (un program pentru chei, unul pentru criptare și unul pentru decriptare).
+
+#+begin_example
+  Introduceți un număr prim p = 13
+  Introduceți un al doilea număr prim q = 17
+  Calculez modulul de criptare...
+  Modulul de criptare este n = 221
+  Alegeți modulul de criptare, de la 3 la 191, coprim cu 192, e = 5
+  Calculez exponentul de decriptare...
+  Exponentul de decriptare este d = 77
+  Cheia publică este PuK = (5, 221)
+  Cheia privată de decriptare este PrK = (77, 221)
+  ----------------------------------------------------------------------
+  Introduceți un număr prim p = 10
+  Numărul introdus nu este prim, reîncercați.
+  Introduceți un număr prim p = 11
+  Introduceți un al doilea număr prim q = 19
+  Calculez modulul de criptare...
+  Modulul de criptare este n = 209
+  Alegeți modulul de criptare, de la 3 la 179, coprim cu 180, e = 4
+  cmmdc(4, 180) = 4 != 1. Reîncercați.
+  Alegeți modulul de criptare, de la 3 la 179, coprim cu 180, e = 11
+  Calculez exponentul de decriptare...
+  Exponentul de decriptare este d = 131
+  Cheia publică este PuK = (11, 209)
+  Cheia privată de decriptare este PrK = (131, 209)
+#+end_example
+
+Mai departe, pentru criptare:
+#+begin_example
+  Introduceți un număr prim p = 7
+  Introduceți un al doilea număr prim q = 11
+  Calculez modulul de criptare...
+  Modulul de criptare este n = 77
+  Alegeți modulul de criptare, de la 3 la 59, coprim cu 60, e = 19
+  Calculez exponentul de decriptare...
+  Exponentul de decriptare este d = 19
+  Cheia publică este PuK = (19, 77)
+  Cheia privată de decriptare este PrK = (19, 77)
+  Cum trimiteți mesajul: (a) numeric (b) cu maximum 3 litere: a
+  Introduceți mesajul numeric m = 411
+  Calculez mesajul criptat...
+  Mesajul criptat transmis de Bob este c = 67
+#+end_example
+
+Sau, în varianta cu text:
+#+begin_example
+  Introduceți un număr prim p = 13
+  Introduceți un al doilea număr prim q = 17
+  Calculez modulul de criptare...
+  Modulul de criptare este n = 221
+  Alegeți modulul de criptare, de la 3 la 191, coprim cu 192, e = 15
+  cmmdc(15, 192) = 3 != 1. Reîncercați.
+  Alegeți modulul de criptare, de la 3 la 191, coprim cu 192, e = 19
+  Calculez exponentul de decriptare...
+  Exponentul de decriptare este d = 91
+  Cheia publică este PuK = (19, 221)
+  Cheia privată de decriptare este PrK = (91, 221)
+
+  Cum trimiteți mesajul: (a) numeric (b) cu maximum 3 litere: b
+  Introduceți mesajul de maximum 3 litere m = yes
+  Mesajul transformat numeric este m = 2458
+  Mesajul criptat transmis de Bob este c = 157
+#+end_example
+
+Pentru decriptare:
+#+begin_example
+  Introduceți un număr prim p = 19
+  Introduceți un al doilea număr prim q = 41
+  Calculez modulul de criptare...
+  Modulul de criptare este n = 779
+  Alegeți modulul de criptare, de la 3 la 719, coprim cu 720, e = 121
+  Calculez exponentul de decriptare...
+  Exponentul de decriptare este d = 601
+  Cheia publică este PuK = (121, 779)
+  Cheia privată de decriptare este PrK = (601, 779)
+  Programul poate decripta doar mesaje numerice.
+  Cum trimiteți mesajul: (a) numeric (b) cu maximum 3 litere: a
+  Introduceți mesajul numeric m = 4112
+  Calculez mesajul criptat...
+  Mesajul criptat transmis de Bob este c = 217
+
+  Decriptare, varianta numerică
+  Alice a primit mesajul c = 217
+  Decriptează...
+  Am obținut m' = 217
+  Mesajul coincide cu m.
+#+end_example
