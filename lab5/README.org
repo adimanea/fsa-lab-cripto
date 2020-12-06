@@ -215,7 +215,7 @@ cu numere foarte mari, puteți, așadar, folosi una dintre opțiunile:
 - trimiteți un mesaj numeric =m=, apoi criptarea se face pur și simplu luînd =m % n=;
 - puteți trimite un mesaj alcătuit din maximum 3 litere, pentru care se ia pozițiile din alfabet și se concatenează, obținînd un număr în baza 10, care se ia apoi modulo =n=. De exemplu, mesajul "DA" se va coda în 30.
 
-*Decriptarea mesajelor~:
+*Decriptarea mesajelor*:
 - Alice primește mesajul ~c~;
 - Alice calculează ~m' = c^d mod n~, deoarece cunoaște cheia de decriptare, ~PrK = (d, n)~;
 - Se poate demonstra că ~m' = m~, deci Alice a realizat decriptarea.
