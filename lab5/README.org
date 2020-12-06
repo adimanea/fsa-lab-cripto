@@ -1,4 +1,4 @@
-#+TITLE: Laborator 5: Diffie-Hellman și RSA
+#+TITLE: Laborator 5: Diffie-Hellman, El Gamal și RSA
 #+AUTHOR: Adrian Manea
 
 * Problema logaritmului discret
@@ -77,6 +77,115 @@ Detalii [[https://medium.com/loopring-protocol/learning-cryptography-diffie-hell
 
 *Exercițiu L5.3.:* Continuați exercițiul de mai sus cu o criptare Cezar folosind translația cu =K=, urmată de o decriptare, folosind translația cu =-K=.
 
+* El Gamal
+Criptosistemul El Gamal se bazează pe problema logaritmului discret și este
+un sistem de criptare asimetrică, cu cheie publică.
+
+Sistemul conține 3 etape:
+1. Generarea cheii;
+2. Algoritmul de criptare;
+3. Algoritmul de decriptare.
+
+Presupunem că algoritmul se vrea folosit între Alice și Bob.
+
+*Toate calculele se fac modulo =p=, presupunînd că lucrăm în grupul multiplicativ =Zp=.*
+
+*Generarea cheii:*
+- Alice alege un grup ciclic =G= de ordin =q=, cu un generator =g= și fie =e= elementul său neutru. În cazul cel mai simplu, ~G = Zq~, cu ~g = 1, e = 0~. Un caz ceva mai interesant este ~G = Zp \ {0}~, cu ~p~ prim. Numărul generatorilor ai acestui grup este ~phi(p - 1)~, unde ~phi~ este indicatorul lui Euler. Astfel că putem găsi mulți generatori, dar nu este ușor de dat un algoritm general. Cel mai simplu este să calculăm efectiv. ~e = 1~ în acest caz.
+- Se alege un întreg aleatoriu =x= din ~{1, ..., q - 1}~;
+- Se calculează ~h = g^x~;
+- /Cheia publică/ este ~PuK = (G, q, g, h)~, iar /cheia privată/ este ~PrK = x~.
+
+*Criptarea:*
+- Bob alege un mesaj ~M~, pe care îl transformă într-un element ~m~ al lui ~G~, folosind o transformare reversibilă;
+- Se alege un întreg aleatoriu ~y~ din ~{1, ..., q - 1}~;
+- Se calculează ~s = h^y~, care se numește /secretul public/;
+- Se calculează ~c1 = g^y~;
+- Se calculează ~c2 = m * s~;
+- /Cifrul/ trimis de Bob este perechea ~(c1, c2)~.
+
+*Decriptarea:*
+- Alice calculează ~s = c1^x = h^y~;
+- Alice calculează ~s^{-1}~, inversul lui ~s~ în grupul ~G~. Modalitatea cea mai simplă (pe lîngă cea directă) este să se calculeaze ~c1^{q - x}~;
+- Alice calculează ~m = c2 * s^{-1}~, care se transformă înapoi în ~M~, folosind inversa transformării folosite de Bob.
+
+*Exercițiu L5.4.:* Se dă un grup ciclic de forma =Zp=, cu =p= citit de la tastatură. Verificați dacă ~p~ este prim și dacă un număr citit de la tastatură ~g~ din ~Zp~ este generator. *BONUS 1:* Afișați toți generatorii lui ~Zp~. *BONUS 2:* Afișați tabla puterilor lui ~Zp~.
+
+#+begin_example
+  Introduceți un număr prim p = 21
+  Numărul introdus nu este prim. Reîncercați.
+  Introduceți un număr prim p = 31
+  Introduceți un element din Z31 pentru a-l verifica dacă este generator, g = 7
+  7 nu este un generator pentru Z31.
+  7 generează un subgrup de ordin 15:
+  [7, 18, 2, 14, 5, 4, 28, 10, 8, 25, 20, 16, 19, 9, 1]
+  --------------------------------------------------
+  Introduceți un număr prim p = 17
+  Introduceți un element din Z17 pentru a-l verifica dacă este generator, g = 5
+  5 este un generator pentru Z17.
+#+end_example
+
+*Exercițiu L5.5.:* Implementați algoritmul ElGamal, cu etapele delimitate clar.
+#+begin_example
+  Programul implementează algoritmul ElGamal.
+  PASUL DE GENERARE A CHEILOR
+  Introduceți un număr prim p pentru a lucra în grupul multiplicativ Zp, p = 101
+  Introduceți un generator pentru Z101, g = 29
+  Lucrăm în grupul multiplicativ Z101, cu generatorul g = 29, e = 1 și q = 100
+  Cheia publică este PuK = (G, q, g, h) = (Z101, 100, 29, 75).
+  Cheia privată este PrK = x = 87.
+  PASUL DE CRIPTARE
+  Alegeți un mesaj m, ca element al lui Z101*, m = 23
+  Cifrul este perechea (c1, c2) = (77, 1).
+  PASUL DE DECRIPTARE
+  Mesajul decriptat este 23, care coincide cu m = 23.
+#+end_example
+
+*BONUS 1*:
+#+begin_example
+  Introduceți un număr prim p = 21
+  Numărul introdus nu este prim. Reîncercați.
+  Introduceți un număr prim p = 41
+  Generatorii grupului multiplicativ Z41* sînt:
+  [6, 7, 11, 12, 13, 15, 17, 19, 22, 24, 26, 28, 29, 30, 34, 35]
+#+end_example
+
+*BONUS 2*:
+#+begin_example
+  Introduceți un număr prim p = 11
+  Tabla puterilor pentru Z11* este:
+  1       2       3       4       5       6       7       8       9       10      
+  ------------------------------------------------------------------------------
+  1       1       1       1       1       1       1       1       1       1       
+  2       4       8       5       10      9       7       3       6       1       
+  3       9       5       4       1       3       9       5       4       1       
+  4       5       9       3       1       4       5       9       3       1       
+  5       3       4       9       1       5       3       4       9       1       
+  6       3       7       9       10      5       8       4       2       1       
+  7       5       2       3       10      4       6       9       8       1       
+  8       9       6       4       10      3       2       5       7       1       
+  9       4       3       5       1       9       4       3       5       1       
+  10      1       10      1       10      1       10      1       10      1       
+#+end_example
+
+Alternativ, puteți printa ca listă:
+#+begin_example
+  Introduceți un număr prim p = 13
+  Tabla puterilor pentru Z13* este:
+  1:      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  2:      [2, 4, 8, 3, 6, 12, 11, 9, 5, 10, 7, 1]
+  3:      [3, 9, 1, 3, 9, 1, 3, 9, 1, 3, 9, 1]
+  4:      [4, 3, 12, 9, 10, 1, 4, 3, 12, 9, 10, 1]
+  5:      [5, 12, 8, 1, 5, 12, 8, 1, 5, 12, 8, 1]
+  6:      [6, 10, 8, 9, 2, 12, 7, 3, 5, 4, 11, 1]
+  7:      [7, 10, 5, 9, 11, 12, 6, 3, 8, 4, 2, 1]
+  8:      [8, 12, 5, 1, 8, 12, 5, 1, 8, 12, 5, 1]
+  9:      [9, 3, 1, 9, 3, 1, 9, 3, 1, 9, 3, 1]
+  10:     [10, 9, 12, 3, 4, 1, 10, 9, 12, 3, 4, 1]
+  11:     [11, 4, 5, 3, 7, 12, 2, 9, 8, 10, 6, 1]
+  12:     [12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1]
+#+end_example
+
 * RSA
 Algoritmul RSA este unul dintre cele mai folosite astăzi și se bazează pe /problema factorizării/.
 Actualmente, nu există un algoritm eficient (polinomial) care să descompună în factori un număr dat.
@@ -111,7 +220,7 @@ cu numere foarte mari, puteți, așadar, folosi una dintre opțiunile:
 - Alice calculează ~m' = c^d mod n~, deoarece cunoaște cheia de decriptare, ~PrK = (d, n)~;
 - Se poate demonstra că ~m' = m~, deci Alice a realizat decriptarea.
 
-*Exercițiu L5.4.:* Implementați algoritmul RSA, eventual pe bucăți (un program pentru chei, unul pentru criptare și unul pentru decriptare).
+*Exercițiu L5.6.:* Implementați algoritmul RSA, eventual pe bucăți (un program pentru chei, unul pentru criptare și unul pentru decriptare).
 
 #+begin_example
   Introduceți un număr prim p = 13
