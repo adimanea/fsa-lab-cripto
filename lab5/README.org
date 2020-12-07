@@ -196,7 +196,7 @@ Iar dacă factorii sînt numere prime mari, problema este și mai grea.
 Procedura este următoarea:
 *Alegerea cheilor de criptare*:
 - fiecare utilizator alege două numere prime mari, =p= și =q=;
-- se calculează /modulul de criptare/, ~n = p * q~ și ~phi(n) = (p - 1)(q - 1)~, unde ~phi~ este /indicatorul lui Euler (vezi Exercițiul L2.10 de la [[https://github.com/adimanea/fsa-lab-cripto/tree/master/lab2][laboratorul 2]]);
+- se calculează /modulul de criptare/, ~n = p * q~ și ~phi(n) = (p - 1)(q - 1)~, unde ~phi~ este /indicatorul lui Euler/ (vezi Exercițiul L2.10 de la [[https://github.com/adimanea/fsa-lab-cripto/tree/master/lab2][laboratorul 2]]);
 - se alege un /exponent de criptare/ =e=, care poate lua valori de la 3 la ~phi(n) - 1~ și astfel încît să fie prim cu ~phi(n)~, adică ~cmmdc(e, phi(n)) = 1~;
 - se găsește /exponentul de decriptare/ ~d~, astfel încît ~d*e = 1 mod phi(n)~;
 - /cheia publică de criptare/ este perechea ~PuK = (e, n)~;
