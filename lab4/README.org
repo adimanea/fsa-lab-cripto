@@ -67,7 +67,7 @@ Criptosistemul afin folosește două chei, =a= și =b=, și transformă =p= în 
 
 *Exercițiu L4.7.:* Implementați criptosistemul afin pe blocuri, corespunzător exercițiului 5.
 
-* Matrice de criptare
+* Matrice de criptare (metoda Hill)
 Această metodă funcționează pentru criptarea pe blocuri. Presupunem că avem un algoritm
 de criptare care funcționează pe blocuri de lungime =N=. Fiecărui caracter din mesajul de intrare
 i se asociază poziția din alfabet, deci vom converti mesajul de intrare în șiruri care conțin
