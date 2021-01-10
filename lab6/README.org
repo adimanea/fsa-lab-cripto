@@ -7,21 +7,30 @@ criptografie, pe care le mai puteți rezolva pînă la finalul semestrului.
 
 * Matematică
 M1. Scrieți un program care să calculeze ordinul unui element într-un grup.
+
 M2. Scrieți un program care să rezolve o ecuație de gradul al doilea modulo =n= (cu =n= citit de la tastatură).
+
 M3. Scrieți un program care să afle inversa unei matrice 2 x 2 cu elemente din =Zn=, cu =n= citit de la tastatură.
+
 M4. Scrieți un program care să citească un polinom de grad =n= (cu =n < 10=), un modul =p= și să afișeze rădăcinile polinomului în =Zp= (dacă există).
+
 M5. Scrieți un program care să calculeze rădăcina de ordinul =r= a unui număr =n= citit de la tastatură, într-un grup =Zp=, cu =p= citit de la tastatură, dacă aceasta există.
+
 M6. Implementați algoritmul de divizibilitate cu 11, folosind descompunerea în baza 10 a unui număr de maximum 10 cifre citit de la tastatură.
+
 M7. Scrieți un program care să calculeze ordinul de mărime (numărul cifrelor) a unui număr stocat pe =n= biți, cu =n= citit de la tastatură. De exemplu, un număr stocat pe 10 biți are 4 cifre (ordinul de mărime 1000). *Atenție:* Nu folosim tehnologia de stocare [[https://www.geeksforgeeks.org/introduction-of-floating-point-representation/][din realitate]]. Ne referim doar la cazul simplu al numerelor naturale, stocate folosind puteri ale lui 2.
+
 M8. Scrieți un program care primește de la tastatură două puncte în plan (de exemplu, sub forma coordonatelor =(x1, y1)= și =(x2, y2)=) și afișează ecuația dreptei care trece prin cele două puncte (sub forma ~y = m*x + n~).
+
 M9. Scrieți un program care citește de la tastatură un număr =n= și afișează cîte numere prime mai mici decît =n= există și care este următorul număr prim strict mai mare decît =n=.
+
 M10. Scrieți un program care citește de la tastatură un punct din plan și afișează aria triunghiului dreptunghic care are drept ipotenuză segmentul care unește punctul cu originea, iar cele două catete sînt proiecțiile punctului pe axele de coordonate. Vezi figura. Dacă =P= nu se află pe axe, se returnează aria triunghiului =OAP=, iar dacă =P= se află pe una dintre axe, se returnează =0=.
 #+begin_example
   ^
   |
   |
   |
-  |	      x P(x1, x2)
+  |      x P(x1, x2)
   |    .  .
   |  .    . 
   |.      . 
@@ -31,12 +40,21 @@ M10. Scrieți un program care citește de la tastatură un punct din plan și af
 
 * Criptografie
 C1. Implementați cifrul Caesar (cu pozițiile din alfabet) pe blocuri, în care cheia de bloc se obține din suma indicilor literelor din bloc. De exemplu, pentru cuvîntul =criptografie= și lungimea blocului ~b = 3~, cheia pentru primul bloc este ~index(c) + index(r) + index(i) = 2 + 17 + 8 = 1~.
+
 C2. Implementați cifrul Caesar în care cheia pentru fiecare literă este suma indicilor literelor rămase din cuvînt, iar cheia pentru ultima literă este indicele primei litere. De exemplu, pentru cuvîntul =luni=, cheia pentru =l= este ~index(u) + index(n) + index(i)~, cheia pentru =u= este ~index(n) + index(i)~, cheia pentru =n= este ~index(i)~, iar cheia pentru =i= este ~index(l)~.
+
 C3. Implementați cifrul Caesar în care cheia pentru fiecare literă este ordinul indicelui său într-un grup =Zp=, cu =p= citit de la tastatură. Dacă ordinul este infinit, cheia este =0=.
+
 C4. Implementați cifrul Caesar în care cheia pentru fiecare literă este radicalul său într-un grup =Zp=, cu =p= citit de la tastatură. Dacă radicalul nu există, cheia este indicele însuși.
+
 C5. Implementați cifrul Caesar în care cheia pentru toate literele este pătratul sumei indicilor literelor și afișați cuvîntul rezultat în urma transformării în majuscule a unui număr aleatoriu de caractere din mesaj. De exemplu, dacă cuvîntul este =criptografie=, cheia de criptare va fi ~(index(c) + index(r) + ... + index(e))^2~ și se generează aleatoriu o listă de lungime aleatorie -- să zicem ~[1, 3, 5]~. Atunci cuvîntul codat rezultat are caracterele de pe pozițiile ~1, 3, 5~ transformate în majuscule.
+
 C6. Implementați cifrul Caesar în care cheia pentru fiecare literă este logaritmul discret în baza indicelui literei din indicele literei precedente în =Zp=, unde =p= este suma indicilor tuturor literelor. Pentru prima literă, se ia ultima literă ca referință. Dacă logaritmul nu se poate calcula, cheia se ia cel mai mare număr prim mai mic sau egal cu =p=. De exemplu, pentru cuvîntul =criptografie=, cheia pentru =c= este =dlog_2(4)= în =Zp=, unde ~p = index(c) + index(r) + index(i) + ... + index(e)~.
+
 C7. Se citește de la tastatură un cuvînt. Dacă indicele unei litere este generator pentru grupul =Z26*=, litera se înlocuiește cu =*=. Să se afișeze cuvîntul rezultat.
+
 C8. Se citește de la tastatură un cuvînt. Dacă indicele unei litere este pătrat perfect în grupul =Z26*=, litera se înlocuiește cu =*=. Să se afișeze cuvîntul rezultat.
+
 C9. Se citește de la tastatură un cuvînt. Dacă indicele unei litere este divizor /în/ =Z26= al indicelui literei următoare, litera se înlocuiește cu =*=. Pentru ultima literă, "următoarea" va însemna prima literă. Să se afișeze cuvîntul rezultat.
+
 C10. Implementați cifrul Caesar în care cheia pentru fiecare literă este numărul de pași pe care îi face algoritmul Collatz pentru indicele său. (Observație: literele =A= și =B= vor rămîne neschimbate.)
