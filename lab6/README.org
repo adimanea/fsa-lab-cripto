@@ -6,11 +6,11 @@ propun o listă de exerciții suplimentare, atît de matematică, cît și de
 criptografie, pe care le mai puteți rezolva pînă la finalul semestrului.
 
 * Matematică
-M1. Scrieți un program care să calculeze ordinul unui element într-un grup.
+M1. Scrieți un program care să calculeze ordinul unui element într-un grup /multiplicativ/ de forma =Zn=. Astfel, se citește de la tastatură =n= și un element =g= și se afișează =ord(g)=.
 
-M2. Scrieți un program care să rezolve o ecuație de gradul al doilea modulo =n= (cu =n= citit de la tastatură).
+M2. Scrieți un program care să rezolve o ecuație de gradul al doilea modulo =n= (cu =n= citit de la tastatură). Astfel, se citesc de la tastatură coeficienții ecuației, =a, b, c= și modulul =n= și se afișează soluția ecuației =ax^2 + bx + c = 0= în =Zn=.
 
-M3. Scrieți un program care să afle inversa unei matrice 2 x 2 cu elemente din =Zn=, cu =n= citit de la tastatură.
+M3. Scrieți un program care să afle inversa unei matrice 2 x 2 cu elemente din =Zn=, cu =n= citit de la tastatură, matricea fiind și ea citită de la tastatură.
 
 M4. Scrieți un program care să citească un polinom de grad =n= (cu =n < 10=), un modul =p= și să afișeze rădăcinile polinomului în =Zp= (dacă există).
 
